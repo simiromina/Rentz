@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rentz</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+  <!--MYStyle-->
+  <link href="css/mystyle.css" rel="stylesheet">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script>
+$(document).ready(function(){
+      $("#alegejoc").hide();
+      $("#tabel").hide();
+      var contor=1;
+      //salvez inputurile intr-un array 
+      var nume = [];
+      $('.form-control').each(function() {
+      nume[this.name] = this.value;
+       nume.push(this.value);
+       });
+      // salvez valorile jocurilor intr-un array
+
+      var jocuri = [];
+      $('.check').each(function() {
+      jocuri.push($(this).val()); 
+       });
+
+   
+    $("#start").click(function(){
+        $("#input").hide();
+        $("#jumbotron1").hide();
+        $("#alegejoc").show();
+        $("#numejuc").text(nume[0]).css('textTransform', 'capitalize');
+
+ });   
+ 
+      
+
+     // se alege jocul         
+     $("#alegebtn").click(function(){
+        $("#alegejoc").hide();
+        $("#tabel").show();
+        $("#j1").css('textTransform', 'capitalize').text(nume["juc1"]).css({'color':'#FF9900' ,'font-weight': 'bold'});
+        $("#j2").css('textTransform', 'capitalize').text(nume["juc2"]).css({'color':'#FF9900' ,'font-weight': 'bold'});
+        $("#j3").css('textTransform', 'capitalize').text(nume["juc3"]).css({'color':'#FF9900' ,'font-weight': 'bold'});
+
+  // dupa selectie dezactiveaza chckbox
+   $('.check').each(function() { 
+    if ($(this).is(':checked')){
+       $(this).val(0);
+       $(this).prop("disabled", true);
+       var verifatr = $(this).attr('name');
+       if (verifatr === "popa"){
+        $('.popa').prop("disabled", false);
+        $("#joculcurent").text("Popa de rosu");
+      }
+        else if (verifatr === "zece"){
+        $('.zece').prop("disabled", false);
+        $("#joculcurent").text("10 de Trefla");
+       }
+       else if (verifatr === "dame"){
+        $('.dame').prop("disabled", false);
+        $("#joculcurent").text("Dame");
+       }
+        else if (verifatr === "carouri"){
+        $('.carouri').prop("disabled", false);
+        $("#joculcurent").text("Carouri");
+       }
+        else if (verifatr === "levate"){
+        $('.levate').prop("disabled", false);
+        $("#joculcurent").text("Levate")
+       }
+       else if (verifatr === "whist"){
+        $('.whist').prop("disabled", false);
+        $("#joculcurent").text("Whist");
+       }
+       else if (verifatr === "rentz"){
+        $('.rentz').prop("disabled", false);
+        $("#joculcurent").text("Rentz");
+       }
+       else if (verifatr === "totale"){
+         $('.popa').prop("disabled", false);
+         $('.dame').prop("disabled", false);
+         $('.carouri').prop("disabled", false);
+         $('.levate').prop("disabled", false);
+         $("#joculcurent").text("TOTALE");
+       };
+
+
+};
+    });
+
+});
+
+$("#urmat").click(function(){ 
+     $("#alegejoc").show();
+      $("#tabel").hide();
+        
+         
+        do{
+         for (var i=0; i<nume.length ; i++){
+         $("#numejuc").css('textTransform', 'capitalize').text(nume[i]);
+         contor=contor+1;
+        };
+        }while(contor===24);
+         
+});
+
+$("#salveaza").click(function(){ 
+      $('.popa').prop("disabled", true);
+      $('.dame').prop("disabled", true);
+      $('.carouri').prop("disabled", true);
+      $('.levate').prop("disabled", true);
+      $('.zece').prop("disabled", true);
+      $('.whist').prop("disabled", true); 
+      $('.rentz').prop("disabled", true);
+      
+});
+
+});
+
+  </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  <!-- Navbar -->
+   	<nav class="navbar navbar-inverse navbar-fixted-top" id="my-navbar">
+   		<div class="container">
+   			<div class="navbar-header">
+   				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+   					<span class="icon-bar"></span>
+   					<span class="icon-bar"></span>
+   					<span class="icon-bar"></span>
+   					<span class="icon-bar"></span>
+   				</button>
+  <a href="index.html" class="navbar-brand"> Rentz </a>
+
+        </div> 
+         <!-- Navbar Header -->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+          <li> <a href="reguli.html">Reguli</a>
+          <li> <a href="jocuri.html">Jocuri</a>
+          </ul>
+        </div>
+      </div> <!--End Div Container-->
+    </nav> <!--End Navbar-->
+    <!--Jumbotron-->
+    
+      <div class="jumbotron" id="jumbotron1">
+        <div class="container text-center">
+        <h1> Rentz </h1>
+        <h3> Introduceti numele jucatorilor </h3>  
+      <button class="btn btn-warning btn-lg" id="start">OK</button> 
+        </div> <!--End Div Container-->
+      </div> <!--End jumbotron-->
+   <!-- Intrdoucere nume --> 
+  <div  class="container" id="input">
+
+  <div class="input-group input-group-lg">
+  <span class="input-group-addon" id="sizing-addon1">Jucator 1</span>
+  <input type="text" class="form-control" placeholder="Nume" aria-describedby="sizing-addon1" name="juc1" >
+  </div>
+  <div class="input-group input-group-lg">
+  <span class="input-group-addon" id="sizing-addon1">Jucator 2</span>
+  <input type="text" class="form-control" placeholder="Nume" aria-describedby="sizing-addon1" name="juc2" >
+  </div>
+  <div class="input-group input-group-lg">
+  <span class="input-group-addon" id="sizing-addon1">Jucator 3</span>
+  <input type="text" class="form-control" placeholder="Nume" aria-describedby="sizing-addon1" name="juc3">
+  </div>
+  </div>
+
+ <!-- SCOR --> <!-- Alegerea primului juc -->
+  
+  <div id="alegejoc">
+  <!-- Alegerea jocului -->
+  
+      <div class="jumbotron" id="jumbotron2">
+        <div class="container text-center">
+        <h1 id="numejuc"> Rentz </h1>
+        <h3> Alege jocul </h3>  
+      <button class="btn btn-warning btn-lg" id="alegebtn">OK</button> 
+        </div>
+      </div> 
+  
+  <div  class="container ">
+<form >
+ <div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="pr" name="popa">Popa de rosu</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="10" name="zece">10 de Trefla</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="da" name="dame">Dame</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="car" name="carouri">Carouri</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="lev" name="levate">Levate</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="whi" name= "whist">Whist</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="ren" name="rentz">Rentz</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="1" class="check" id="tot" name="totale">Totale</label>
+</div>
+</form>
+</div>
+</div>
+<!-- Tabela de scor-->
+<div id="tabel">
+<div class="jumbotron" id="jumbotron3">
+        <div class="container text-center">
+        <h1 id="numejuc"> Rentz </h1>
+        <h3 id="joculcurent"> Alege jocul </h3>  
+      <button class="btn btn-warning btn-lg" id="salveaza">Salveaza scor</button> 
+      <button class="btn btn-warning btn-lg" id="urmat">Urmatorul jucator</button> 
+        </div>
+      </div> 
+
+<div class="table-responsive">
+  <table class="table-bordered">
+    <tr> 
+    <td align="center"><b>Nume</td>
+    <td align="center"><b>Popa de rosu</td>    
+    <td align="center"><b>10 de Trefla</td>
+    <td align="center"><b>Dame</td>
+    <td align="center"><b>Carouri</td>    
+    <td align="center"><b>Levate</td>
+    <td align="center"><b>Whist</td>
+    <td align="center"><b>Rentz</td>    
+    <td align="center"><b>Totale</td>
+    
+  </tr>
+     <tr>
+    <td width="10%" align="center" ><p id="j1">  Nume1 </p><br> <p id="scj1"> scor </p></td>
+    <td width="7%" align="center"><input type="checkbox" disabled class="popa"></td>    
+    <td width="7%" align="center"><input type="checkbox"disabled class="zece"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="dame"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="carouri"></td>    
+    <td width="7%" align="center"><input type="text" size="1" disabled class="levate"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled  class="whist"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="rentz"></td>    
+    <td width="7%" align="center"><p id="totjuc1">Totale</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" ><p id="j2"> Nume2 </p><br><p id="scj2"> scor </p></td>
+    <td width="7%" align="center"><input type="checkbox" disabled class="popa"></td>    
+    <td width="7%" align="center"><input type="checkbox"disabled class="zece"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="dame"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="carouri"></td>    
+    <td width="7%" align="center"><input type="text" size="1" disabled class="levate"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled  class="whist"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="rentz"></td>    
+    <td width="7%" align="center"><p id="totjuc1">Totale</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" ><p id="j3">  Nume3 </p><br> <p id="scj3"> scor </p></td>
+    <td width="7%" align="center"><input type="checkbox" disabled class="popa"></td>    
+    <td width="7%" align="center"><input type="checkbox"disabled class="zece"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="dame"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="carouri"></td>    
+    <td width="7%" align="center"><input type="text" size="1" disabled class="levate"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled  class="whist"></td>
+    <td width="7%" align="center"><input type="text" size="1" disabled class="rentz"></td>  
+    <td width="7%" align="center"><p id="totjuc1">Totale</td>
+  </tr>
+  </table>
+</div>
+</div>
+
+ <!-- <script>
+
+  var jucatori = new Object();
+  jucatori.nume = new Array[];
+  jucatori[0].nume = getElementById("j1").value;
+  jucatori[1].nume = getElementById("j2").value;
+  jucatori[2].nume = getElementById("j3").value;
+  jucatori.jocuri=["poparosu","10trefla", "dame", "romburi", "wist", "levante", "rentz", "totale"];
+ 
+  function getName() {
+    
+    $()
+   
+  }
+
+
+
+
+  </script>-->
+
+    
